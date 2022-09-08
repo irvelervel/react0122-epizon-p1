@@ -28,6 +28,22 @@ const mainReducer = (state = initialState, action) => {
         },
       }
 
+    case 'REMOVE_FROM_CART':
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          content: state.cart.content.filter((book, i) => i !== action.payload),
+          //   content: [
+          //     ...state.cart.content.slice(0, action.payload),
+          //     ...state.cart.content.slice(
+          //       action.payload + 1,
+          //       state.cart.content.length
+          //     ),
+          //   ],
+        },
+      }
+
     default:
       return state
     // worst case scenario: torno lo stato come l'ho appena trovato

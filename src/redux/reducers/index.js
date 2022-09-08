@@ -10,10 +10,24 @@ const initialState = {
   },
 }
 
+// il reducer è una PURE FUNCTION
+// quindi non possiamo mutare i nostri parametri
+
 const mainReducer = (state = initialState, action) => {
   // da questa funzione, in ogni possibile situazione
   // io devo restituire il NUOVO STATO dell'applicativo
   switch (action.type) {
+    case 'ADD_TO_CART':
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          content: [...state.cart.content, action.payload],
+          //   NON FARE!!! content: state.cart.content.push(action.payload)
+          //   content: state.cart.content.concat(action.payload),
+        },
+      }
+
     default:
       return state
     // worst case scenario: torno lo stato come l'ho appena trovato

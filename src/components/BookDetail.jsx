@@ -1,6 +1,9 @@
 import { Col, Row, Button } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
 
 const BookDetail = ({ bookSelected }) => {
+  const dispatch = useDispatch()
+
   return (
     <div className="mt-3 mb-4 mb-lg-0">
       {bookSelected ? (
@@ -29,7 +32,16 @@ const BookDetail = ({ bookSelected }) => {
                 <span className="font-weight-bold">Price:</span>&nbsp;
                 {bookSelected.price}$
               </p>
-              <Button color="primary" onClick={() => {}}>
+              <Button
+                color="primary"
+                onClick={() => {
+                  console.log("ora faccio il dispatch di un'action")
+                  dispatch({
+                    type: 'ADD_TO_CART',
+                    payload: bookSelected,
+                  })
+                }}
+              >
                 ADD TO CART
               </Button>
             </Col>
